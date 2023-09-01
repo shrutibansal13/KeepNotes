@@ -11,7 +11,7 @@ import axios from 'axios';
 import image from '../../../images/239321-middle.png'
 const socket = io.connect("http://localhost:8001")
 
-function TopNavigation() {
+function TopNavigation(props) {
 
   const role = useSelector((state)=>state.dataSlice.role)
   const [notification, setNotification] = useState([])
@@ -58,7 +58,7 @@ function TopNavigation() {
     <div>
       <Navbar bg="dark" data-bs-theme="dark" style={{ height: '100px', width: '100%' }}>
         <Container>
-          <Navbar.Brand className='px-5'><h2> Notes</h2> </Navbar.Brand>
+          <Navbar.Brand className='px-5'><h2> {props.name}</h2> </Navbar.Brand>
           <Nav className="justify-content-end ">
 
            {role===false? <Nav.Link onClick={()=>gotopage('notification')} >Notification<Badge pill bg="light" text="dark">{notification.length}</Badge></Nav.Link>:<></>}

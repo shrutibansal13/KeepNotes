@@ -45,7 +45,7 @@ function Notification() {
           <SideBar name={userData.name} />
         </Col>
         <Col md="10">
-          <TopNavigation />
+          <TopNavigation name='Notificattion' />
           <div className=' pt-5 px-5' >
 
             <h4>Notifications</h4>

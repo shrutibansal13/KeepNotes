@@ -63,7 +63,7 @@ function Archives() {
                     <SideBar name={userDetails.name} />
                 </Col>
                 <Col md="10">
-                    <TopNavigation />
+                    <TopNavigation name='Archives' />
                     {allowedRoutes.includes('/archives') ?
                         <div className='text-center'>
               <h3 className='mt-5'>Archives</h3>

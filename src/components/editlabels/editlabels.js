@@ -64,14 +64,31 @@ function Editlabels() {
       const result = await axios.get('http://localhost:8001/getIdByLabel?' + new URLSearchParams({
         labels: labelActivate
       }))
-      console.log(result.data.data[0]._id, "=lbel id");
+    
       setLabelId(result.data.data[0]._id)
 
       
       const response = await axios.get('http://localhost:8001/getnotesbylabel', { params: { label_id: result.data.data[0]._id, userId: userId } })
-      console.log(response.data, "sdfghjkl;kjhgfghjikljhgfghjkljhgcvb");
-      setNotes(response.data.data)
+      const trash = await axios.get('http://localhost:8001/gettrash?'+new URLSearchParams({
+        id:userDetails._id
+      }))
+    
+      const data = await axios.get("http://localhost:8001/getarchive?"+new URLSearchParams({
+        id:userDetails._id
+      }))
+     
 
+      const responseData = response.data.data;
+      const trashData = trash.data.data;
+      const archiveData = data.data.data;
+
+      const filteredData = responseData.filter(item => 
+        !trashData.some(resultItem => resultItem.note_id === item._id) &&
+        !archiveData.some(archiveItem => archiveItem.note_id === item._id)
+      );
+
+     
+      setNotes(filteredData)  
    
     }
     catch (err) {
@@ -95,7 +112,7 @@ function Editlabels() {
           <SideBar name={userDetails.name} />
         </Col>
         <Col md="10">
-          <TopNavigation />
+          <TopNavigation name='Edit Labels'/>
           {allowedRoutes.includes('/editlabels') ?
             <div className='text-center'>
               {role === false ?

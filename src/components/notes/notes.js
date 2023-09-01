@@ -95,7 +95,7 @@ function Notes() {
           <SideBar name={userDetails.name} />
         </Col>
         <Col md="10">
-          <TopNavigation />
+          <TopNavigation name='Notes' />
           {allowedRoutes.includes('/notes') ?
             <div className='text-center'>
               {role === false ?
@@ -106,7 +106,7 @@ function Notes() {
                   </Card.Body>
                 </Card>
                 : <>
-                  <TextEditor id="" />
+                  <TextEditor id="64f088a0736cb1054f0c86a1" />
                   <Container fluid>
                    {notes.length!==0? <Row>
                       {notes.map((note) => (
@@ -118,7 +118,7 @@ function Notes() {
                               <Col md="1">
 
                                 <Badge pill bg="secondary">
-                                  {note.labels}
+                                  {note.labels!=='note'?`${note.labels}`:''}
                                 </Badge>
 
                               </Col>

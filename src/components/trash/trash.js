@@ -74,7 +74,7 @@ function Trash() {
           <SideBar name={userDetails.name} />
         </Col>
         <Col md="10">
-          <TopNavigation />
+          <TopNavigation name='Trash' />
           {allowedRoutes.includes('/trash') ?
             <div className='text-center'>
               <h2 className='mt-5'>Trash</h2>
@@ -126,6 +126,8 @@ function Trash() {
                     </Container>
                     :
                     <div className='text-center p-5 text-secondary ' style={{ fontSize: "25px" }}>
+                    <Trash2Fill/>
+                    <br></br>
                       Your deleted notes appear here
                     </div>}
                 </>}

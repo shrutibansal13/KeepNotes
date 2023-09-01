@@ -60,7 +60,7 @@ function Home() {
                         <SideBar name='Admin' />
                     </Col>
                     <Col md="10" style={{width:'83%'}}>
-                        <TopNavigation />
+                        <TopNavigation name='Home'/>
                         <Row  style={{paddingLeft:'25px'}}>
                             <Col md='10'>
 
@@ -99,7 +99,7 @@ function Home() {
                             <SideBar name={userDetails.name} />
                         </Col>
                         <Col md="10">
-                            <TopNavigation />
+                            <TopNavigation  name='Home'/>
                             <div className='text-centre'>Access Denied</div>
                             {/* <div className='text-center'>
                                 {allowedRoutes.includes('/home') ?

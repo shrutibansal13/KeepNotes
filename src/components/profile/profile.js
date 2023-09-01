@@ -15,7 +15,7 @@ function Profile() {
     <SideBar name='User'/>
     </Col>
     <Col md="10">
-      <TopNavigation/>
+      <TopNavigation name='Profile'/>
     <div className=' pt-5 px-5 py-5' >
    
     <Card>
