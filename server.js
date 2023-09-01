@@ -10,7 +10,6 @@ const socket= require('./socket')
 const {Server}= require('socket.io')
 const server = http.createServer(app)
 app.use(cors());
-// const io =socketIO(server)
 const io= new Server(server,{
     cors:{
         origin:'http://localhost:3000',
@@ -18,18 +17,13 @@ const io= new Server(server,{
     }
 })
 connectDB();
-
 socket(io);
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true }));  
 app.use(express.json({ type: 'application/*+json' }));
 app.use(express.urlencoded({extended: true })); 
 app.use(router);
-
-
-
 
 server.listen(8001);
 module.exports = app;

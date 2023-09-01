@@ -192,9 +192,12 @@ async function insertLabel(data){
 }
 
 
-async function getNotes() {
+async function getNotes(id) {
+    console.log();
     try {
         const data = await Notes.aggregate([
+            { $match : { userId : new OtId(id) } 
+            },
             {
                 $lookup:{
                     from:"labels",
@@ -207,7 +210,8 @@ async function getNotes() {
             {
                 $unwind: '$allData'
               },
-           { $project:{
+           {
+             $project:{
                 _id:1,
                 notes:1,
                 label_id:1,
@@ -217,8 +221,6 @@ async function getNotes() {
         ])
 
 
-        console.log(data,"datat");
-        //  console.log(data,"datat");
         return data;
     }
     catch (error) {
@@ -228,11 +230,21 @@ async function getNotes() {
 
 async function insertNotes(data){
     try{
-        let config= Notes({
-            notes:data.notes,
-            label_id:data.label_id,
-            userId:data.userId
-        })
+        let config
+        if(data.label_id){
+             config = Notes({
+                notes:data.notes,
+                label_id:new OtId(data.label_id),
+                userId:new OtId(data.userId)
+            })
+        }else{
+             config = Notes({
+                notes:data.notes,
+                userId:new OtId(data.userId)
+            })
+        }
+        
+        console.log(config);
         const response=  await config.save()
         return response;
     }
@@ -295,9 +307,9 @@ async function insertArchives(id){
 }
 
 
-async function getArchives() {
+async function getArchives(id) {
     try {
-        const data = await Archive.find({})
+        const data = await Archive.find({userId:new OtId(id)})
         return data;
     }
     catch (error) {
@@ -339,9 +351,9 @@ async function addTrash(id){
 }
 
 
-async function getTrash() {
+async function getTrash(id) {
     try {
-        const data = await Trash.find({})
+        const data = await Trash.find({userId:new OtId(id)})
         return data;
     }
     catch (error) {

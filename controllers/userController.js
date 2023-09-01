@@ -172,7 +172,7 @@ async function getNotes(req, res){
     try{
 
         if(req.query){
-            const data= await userService.getNotes();
+            const data= await userService.getNotes(req.query.id);
              res.status(200).json({success:'true',data:data})
         }else{
             res.status(404).json({success:'false',message:'Id not found'})
@@ -255,7 +255,7 @@ async function getArchive(req, res){
     try{
 
         if(req.query){
-            const data= await userService.getArchives();
+            const data= await userService.getArchives(req.query.id);
              res.status(200).json({success:'true',data:data})
         }else{
             res.status(404).json({success:'false',message:'Id not found'})
@@ -306,7 +306,7 @@ async function getTrash(req, res){
     try{
 
         if(req.query){
-            const data= await userService.getTrash();
+            const data= await userService.getTrash(req.query.id);
              res.status(200).json({success:'true',data:data})
         }else{
             res.status(404).json({success:'false',message:'Id not found'})

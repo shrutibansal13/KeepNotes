@@ -13,7 +13,7 @@ const notesSchema= new Schema({
     },
     label_id:{
         type:Schema.Types.ObjectId,
-        ref:'labels',
+        ref:'labels'
     }
    
 })
